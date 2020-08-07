@@ -11,37 +11,20 @@
 | last_name   | string  | null: false               |
 | f_name_kana | string  | null: false               |
 | l_name_kana | string  | null: false               |
-| birth_y     | integer | null: false               |
-| birth_m     | integer | null: false               |
-| birth_d     | integer | null: false               |
+| birthday    | date    | null: false               |
 
 ### Association
 
-- has_many :cards
 - has_many :items
 - has_many :ordered-items
-
-## cards テーブル
-
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| card_num   | integer    | null: false                    |
-| card_exp_m | integer    | null: false                    |
-| card_exp_y | integer    | null: false                    |
-| cvc        | integer    | null: false                    |
-| user       | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
 
 ## items テーブル
 
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
 | image                  | text       | null: false                    |
-| i_name                 | string     | null: false                    |
-| i_explanation          | string     | null: false                    |
+| name                   | string     | null: false                    |
+| explanation            | string     | null: false                    |
 | category_id            | integer    | null: false                    |
 | status_id              | integer    | null: false                    |
 | shipping_charge_id     | integer    | null: false                    |
@@ -58,7 +41,6 @@
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| price  | integer    | null: false |
 | user   | references | null: false, foreign_key: true |
 | item   | references | null: false, foreign_key: true |
 
@@ -72,12 +54,12 @@
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| postal_code  | integer    | null: false                    |
+| postal_code  | string     | null: false                    |
 | prefecture   | integer    | null: false                    |
-| city         | integer    | null: false                    |
-| addresses    | integer    | null: false                    |
-| building     | integer    |                                |
-| phone_num    | integer    | null: false                    |
+| city         | string     | null: false                    |
+| addresses    | string     | null: false                    |
+| building     | string     |                                |
+| phone_num    | string     | null: false                    |
 | ordered_item | references | null: false, foreign_key: true |
 
 ### Association

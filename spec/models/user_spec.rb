@@ -16,6 +16,14 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Nickname can't be blank")
     end
 
+    it "nicknameが他ユーザーと重複している場合に登録できないこと" do
+      @user.save
+      another_user = FactoryBot.build(:user)
+      another_user.nickname = @user.nickname
+      another_user.valid?
+      expect(another_user.errors.full_messages).to include("Nickname has already been taken")
+    end
+
     it "emailが空では登録できないこと" do
       @user.email = nil
       @user.valid?
@@ -26,6 +34,14 @@ RSpec.describe User, type: :model do
       @user.email = "abcgmail.com"
       @user.valid?
       expect(@user.errors.full_messages).to include("Email is invalid")
+    end
+
+    it "emailが他ユーザーと重複している場合に登録できないこと" do
+      @user.save
+      another_user = FactoryBot.build(:user)
+      another_user.email = @user.email
+      another_user.valid?
+      expect(another_user.errors.full_messages).to include("Email has already been taken")
     end
 
     it "passwordが6文字以上であれば登録できること" do
@@ -65,7 +81,6 @@ RSpec.describe User, type: :model do
       @user.password = "ＡＡＡ１１１"
       @user.password_confirmation = "ＡＡＡ１１１"
       @user.valid?
-      binding.pry
       expect(@user.errors.full_messages).to include("Password includes both half-width letters and half-width numbers")
     end
 

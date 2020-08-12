@@ -6,10 +6,10 @@ class User < ApplicationRecord
   has_many :ordered_items
 
   with_options presence: true do
-    validates :nickname, uniqueness: true
-    validates :email, uniqueness: true,
-                      format: { with: /\A([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+\z/ }
-    validates :password, length: {minimum: 6}
+    validates :nickname, uniqueness: { case_sensitive: true }
+    validates :email, uniqueness: { case_sensitive: true },
+                      format: { with: /\w+([-+.]\w+)*@\w+([-.]\w+)*/ }
+    validates :password, format: { with: /\A(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+\z/, message: 'includes both letters and numbers' }
     validates :password_confirmation
     validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'is not full-width characters' }
     validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'is not full-width characters' }

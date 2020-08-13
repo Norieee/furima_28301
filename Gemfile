@@ -68,3 +68,6 @@ gem 'pry-rails'
 # Processing the image size and color to upload the image by ActiveStorage
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
+
+# To use data that is unlikely to change without storing it in the database
+gem 'active_hash'

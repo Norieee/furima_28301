@@ -6,5 +6,4 @@ class Users::SessionsController < Devise::SessionsController
   # def create
   #   super (親クラスのcreateアクションを参照)
   # end
-
 end

@@ -24,8 +24,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_new
-    unless user_signed_in?
-      redirect_to controller: 'users/sessions', action: :new
-    end
+    redirect_to controller: 'users/sessions', action: :new unless user_signed_in?
   end
 end

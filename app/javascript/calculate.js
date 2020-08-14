@@ -5,7 +5,6 @@ window.addEventListener('load', function(){
 
   price.addEventListener('input', (e) => {
     const innerPrice = price.value;
-    console.log(innerPrice);
     const tax = innerPrice / 10;
     const pro = innerPrice - tax;
     addTaxPrice.innerHTML = tax;

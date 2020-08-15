@@ -22,7 +22,6 @@
 
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
-| image                  | text       | null: false                    |
 | name                   | string     | null: false                    |
 | explanation            | string     | null: false                    |
 | category_id            | integer    | null: false                    |
@@ -36,6 +35,7 @@
 
 - belongs_to :user
 - has_one :ordered_item
+- has_one_attached :image
 
 ## ordered_items テーブル
 

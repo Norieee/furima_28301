@@ -18,6 +18,6 @@ class Item < ApplicationRecord
                               message: 'is out of the setting range' }
     validates :category_id, :status_id, :shipping_charges_id,
               :prefecture_id, :days_until_shipping_id,
-              numericality: { other_than: 1, message: 'must select' } 
+              numericality: { greater_than_or_equal_to: 1, allow_blank: true}
   end
 end

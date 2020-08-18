@@ -20,11 +20,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    set_item
   end
 
   def destroy
-    set_item
     if @item.destroy
       redirect_to root_path
     else

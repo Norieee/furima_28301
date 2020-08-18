@@ -71,3 +71,6 @@ gem 'image_processing', '~> 1.2'
 
 # To use data that is unlikely to change without storing it in the database
 gem 'active_hash'
+
+# Implementation of the credit-card payment function
+gem 'payjp'

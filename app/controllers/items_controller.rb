@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_new, except: [:index, :show]
-  before_action :set_item, only: [:show, :destroy]
+  before_action :set_item, only: [:show, :destroy, :edit, :update]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
@@ -20,6 +20,17 @@ class ItemsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item.id)
+    else
+      render 'edit'
+    end
   end
 
   def destroy

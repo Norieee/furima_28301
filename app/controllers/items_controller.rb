@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_new, except: [:index, :show]
+  before_action :set_item, only: [:show, :destroy]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
@@ -19,13 +20,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    set_item
   end
 
   def destroy
-    @item = Item.find(params[:id])
+    set_item
     if @item.destroy
       redirect_to root_path
+    else
+      render 'show'
     end
   end
 
@@ -37,5 +40,9 @@ class ItemsController < ApplicationController
 
   def move_to_new
     redirect_to controller: 'users/sessions', action: :new unless user_signed_in?
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end

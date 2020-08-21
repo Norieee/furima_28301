@@ -5,9 +5,9 @@ class ItemAddress
                 :city, :address, :building, :phone_number
 
   with_options presence: true do
-    validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/ , message: 'input correctly' }
+    validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'input correctly' }
     validates :prefecture_id, numericality: { greater_than_or_equal_to: 1, allow_blank: true }
-    validates :phone_number, format: { with: /\A\d{10,11}\z/ }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid. If it includes -, remove it' }
     validates :city, :address
   end
 

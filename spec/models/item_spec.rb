@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  describe '#create' do
+  describe '商品出品機能' do
     before do
       @item = FactoryBot.build(:item)
       @item.image = fixture_file_upload('app/assets/images/item-sample.png')
@@ -42,9 +42,9 @@ RSpec.describe Item, type: :model do
     end
 
     it 'shipping_chargesが未選択では出品できないこと' do
-      @item.shipping_charges_id = nil
+      @item.shipping_charge_id = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping charges can't be blank")
+      expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
     end
 
     it 'prefectureが未選択では出品できないこと' do

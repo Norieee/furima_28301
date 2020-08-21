@@ -74,3 +74,8 @@ gem 'active_hash'
 
 # Implementation of the credit-card payment function
 gem 'payjp'
+
+# Adjust static asset files and log destinations for Heroku
+group :production do
+  gem 'rails_12factor'
+end

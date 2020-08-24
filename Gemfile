@@ -79,3 +79,6 @@ gem 'payjp'
 group :production do
   gem 'rails_12factor'
 end
+
+#Change the image achives to S3
+gem "aws-sdk-s3", require: false

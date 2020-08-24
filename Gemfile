@@ -75,9 +75,11 @@ gem 'active_hash'
 # Implementation of the credit-card payment function
 gem 'payjp'
 
-# Adjust static asset files and log destinations for Heroku
 group :production do
+  # Adjust static asset files and log destinations for Heroku
   gem 'rails_12factor'
+  # Generation an application server process
+  gem 'unicorn', '5.4.1'
 end
 
 #Change the image achives to S3

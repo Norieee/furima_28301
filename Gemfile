@@ -83,4 +83,4 @@ group :production do
 end
 
 #Change the image achives to S3
-gem "aws-sdk-s3", require: false
+# gem "aws-sdk-s3", require: false

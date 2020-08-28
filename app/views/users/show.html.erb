@@ -1,0 +1,52 @@
+
+<h2 class='title'>マイページ</h2>
+<%# 出品している商品を表示 %>
+<div class='item-contents'>
+  <h2 class='sub_title'>出品商品</h2>
+  <ul class='item-lists'>
+    <% if @displayed.present? %>
+      <% @displayed.each do |item| %>
+        <%= render partial: 'shared/item_lists', locals: { item: item } %>
+      <% end %>
+    <% else %>
+        <p>現在出品している商品はありません</p>
+    <% end %>  
+  </ul>
+</div>
+
+<%# 購入した商品を表示 %>
+<div class='item-contents'>
+  <h2 class='sub_title'>購入商品</h2>
+  <ul class='item-lists'>
+    <% if @user_ordered.present? %>
+      <% @ordered_items.each do |item| %>
+        <li class='list'>
+          <%= link_to item_path(item.id) do %>
+          <div class='item-img-content'>
+            <%= image_tag item.image, class: "item-img" %>
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= item.name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= item.price %>円<br>(税込み)</span>
+            </div>
+          </div>
+          <% end %>
+        </li>
+      <% end %>
+    <% else %>
+        <p>購入した商品はありません</p>
+    <% end %>  
+  </ul>
+</div>
+
+<%# 出品している商品を表示 %>
+<div class='item-contents'>
+  <h2 class='sub_title'>購入検討商品</h2>
+  <ul class='item-lists'>
+    <%# 購入検討機能の実装後に表示調整 %>
+    <p>購入を検討している商品はありません</p>
+  </ul>
+</div>

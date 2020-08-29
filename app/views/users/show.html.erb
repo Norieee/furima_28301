@@ -1,52 +1,105 @@
+<%= render "shared/second-header"%>
 
-<h2 class='title'>マイページ</h2>
-<%# 出品している商品を表示 %>
-<div class='item-contents'>
-  <h2 class='sub_title'>出品商品</h2>
-  <ul class='item-lists'>
-    <% if @displayed.present? %>
-      <% @displayed.each do |item| %>
-        <%= render partial: 'shared/item_lists', locals: { item: item } %>
-      <% end %>
-    <% else %>
-        <p>現在出品している商品はありません</p>
-    <% end %>  
-  </ul>
-</div>
+<div class="my-page_contents">
+  <div class="tabs">
+    <input id="user" type="radio" name="tab_item" checked>
+    <label class="tab_item" for="user">ユーザー</label>
+    <input id="display" type="radio" name="tab_item">
+    <label class="tab_item" for="display">出品商品</label>
+    <input id="purchase" type="radio" name="tab_item">
+    <label class="tab_item" for="purchase">購入商品</label>
+    <input id="cons_purchase" type="radio" name="tab_item">
+    <label class="tab_item" for="cons_purchase">購入検討商品</label>
 
-<%# 購入した商品を表示 %>
-<div class='item-contents'>
-  <h2 class='sub_title'>購入商品</h2>
-  <ul class='item-lists'>
-    <% if @user_ordered.present? %>
-      <% @ordered_items.each do |item| %>
-        <li class='list'>
-          <%= link_to item_path(item.id) do %>
-          <div class='item-img-content'>
-            <%= image_tag item.image, class: "item-img" %>
+    <%# ユーザー情報を表示 %>
+    <div class="tab_content" id="user_content">
+      <div class="tab_content_description">
+        <div class='user-wrap'>
+          <div class='user-header'>
+            <h1 class='user-header-text'>
+              会員情報
+            </h1>
           </div>
-          <div class='item-info'>
-            <h3 class='item-name'>
-              <%= item.name %>
-            </h3>
-            <div class='item-price'>
-              <span><%= item.price %>円<br>(税込み)</span>
+          <div class="user-group">
+            <div class='user-text-wrap'>
+              <label class="user-text">ニックネーム</label>
+              <p><%= current_user.nickname %></p>
             </div>
           </div>
-          <% end %>
-        </li>
-      <% end %>
-    <% else %>
-        <p>購入した商品はありません</p>
-    <% end %>  
-  </ul>
+          <div class="user-group">
+            <div class='user-text-wrap'>
+              <label class="user-text">メールアドレス</label>
+              <p><%= current_user.email %></p>
+            </div>
+          </div>
+          <div class='login-btn'>
+           <%= button_to '会員情報を編集する' , {action: :edit}, {method: :get} %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <%# 出品している商品を表示 %>
+    <div class="tab_content" id="display_content">
+      <div class="tab_content_description">
+        <ul class='item-lists'>
+          <% if @displayed.present? %>
+            <% @displayed.each do |item| %>
+              <%= render partial: 'shared/item_lists', locals: { item: item } %>
+            <% end %>
+          <% else %>
+            <div class='empty'>
+              <p>現在出品している商品はありません</p>
+            </div>
+          <% end %>  
+        </ul>
+      </div>
+    </div>
+
+
+    <%# 購入した商品を表示 %>
+    <div class="tab_content" id="purchase_content">
+      <div class="tab_content_description">
+        <ul class='item-lists'>
+          <% if @user_ordered.present? %>
+            <% @ordered_items.each do |item| %>
+              <li class='list'>
+                <%= link_to item_path(item.id) do %>
+                <div class='item-img-content'>
+                  <%= image_tag item.image, class: "item-img" %>
+                </div>
+                <div class='item-info'>
+                  <h3 class='item-name'>
+                    <%= item.name %>
+                  </h3>
+                  <div class='item-price'>
+                    <span><%= item.price %>円<br>(税込み)</span>
+                  </div>
+                </div>
+                <% end %>
+              </li>
+            <% end %>
+          <% else %>
+            <div class='empty'>
+              <p>購入した商品はありません</p>
+            </div>
+          <% end %>  
+        </ul>
+      </div>
+    </div>
+
+    <%# 購入検討機能の実装後に表示調整 %>
+    <div class="tab_content" id="cons_purchase_content">
+      <div class="tab_content_description">
+        <ul class='item-lists'>
+          <div class='empty'>
+            <p>購入を検討している商品はありません</p>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
-<%# 出品している商品を表示 %>
-<div class='item-contents'>
-  <h2 class='sub_title'>購入検討商品</h2>
-  <ul class='item-lists'>
-    <%# 購入検討機能の実装後に表示調整 %>
-    <p>購入を検討している商品はありません</p>
-  </ul>
-</div>
+<%= render "shared/second-footer"%>

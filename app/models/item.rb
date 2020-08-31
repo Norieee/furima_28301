@@ -20,4 +20,12 @@ class Item < ApplicationRecord
               :prefecture_id, :days_until_shipping_id,
               numericality: { greater_than_or_equal_to: 1, allow_blank: true}
   end
+
+  def self.search(search)
+    if search != ""
+      Item.where('name LIKE(?) OR explanation Like(?)' ,"%#{search}%", "%#{search}%")
+    else
+      Item.none
+    end
+  end
 end

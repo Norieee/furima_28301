@@ -1,0 +1,16 @@
+<%= render "shared/header" %>
+
+  <div class='item-contents'>
+    <h2 class='title'>検索該当商品</h2>
+    <ul class='item-lists'>
+      <% if @items.exists? %>
+        <% @items.each do |item| %>
+          <%= render partial: 'shared/item_lists', locals: { item: item } %>
+        <% end %>
+      <% else %>
+          該当する商品は出品されていません
+      <% end %>
+    </ul>
+  </div>
+
+<%= render "shared/footer" %>
